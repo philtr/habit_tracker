@@ -1,0 +1,16 @@
+<div class="container mx-auto mt-8">
+  <h1 class="text-3xl font-bold mb-4">Habits</h1>
+  
+  <%= link_to 'New Habit', new_habit_path, class: 'bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded' %>
+
+  <div class="mt-4">
+    <% @habits.each do |habit| %>
+      <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <h2 class="text-xl font-semibold"><%= habit.emoji %> <%= habit.name %></h2>
+        <p class="text-gray-700"><%= habit.description %></p>
+        <%= link_to 'Edit', edit_habit_path(habit), class: 'text-blue-500 hover:text-blue-700 ml-2' %>
+        <%= link_to 'Delete', habit, method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-red-500 hover:text-red-700 ml-2' %>
+      </div>
+    <% end %>
+  </div>
+</div>

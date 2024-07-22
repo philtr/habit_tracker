@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Habit Tracker</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="bg-gray-100">
+    <header class="bg-indigo-600 text-white">
+      <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div class="flex items-center">
+          <!-- Cool SVG icon -->
+          <svg class="h-8 w-8 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+          </svg>
+          <span class="font-bold text-xl">Habit Tracker</span>
+        </div>
+        <nav>
+          <ul class="flex space-x-4">
+            <li>
+              <%= link_to "Habits", habits_path, class: "hover:text-indigo-200 transition-colors duration-200" %>
+            </li>
+            <li>
+              <%= link_to "Tracker", calendar_path, class: "hover:text-indigo-200 transition-colors duration-200" %>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container mx-auto mt-8 px-4">
+      <%= yield %>
+    </main>
+  </body>
+</html>

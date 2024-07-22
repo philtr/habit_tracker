@@ -1,0 +1,41 @@
+<%= form_with(model: habit, class: "space-y-6") do |form| %>
+  <% if habit.errors.any? %>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+      <strong class="font-bold">Error:</strong>
+      <ul>
+        <% habit.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_field :name, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+  </div>
+
+  <div>
+    <%= form.label :description, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_area :description, rows: 3, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+  </div>
+
+  <div data-controller="emoji-picker">
+    <%= form.label :emoji, class: "block text-sm font-medium text-gray-700" %>
+    <div class="mt-1 flex rounded-md shadow-sm">
+      <%= form.text_field :emoji, 
+                          class: "flex-1 block w-full rounded-none rounded-l-md border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 sm:text-sm",
+                          data: { emoji_picker_target: "input" } %>
+      <button type="button" 
+              class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm"
+              data-action="emoji-picker#toggle">
+        Pick Emoji
+      </button>
+    </div>
+    <emoji-picker hidden data-emoji-picker-target="picker" class="mt-2"></emoji-picker>
+  </div>
+
+  <div class="flex items-center justify-end">
+    <%= form.submit class: "ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+  </div>
+<% end %>
